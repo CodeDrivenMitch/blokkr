@@ -1,0 +1,28 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset=utf-8"/>
+    <title>{% block title %}Blokkr{% endblock %} - Blokkr</title>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/blokkr/vendor/bootstrap/dist/css/bootstrap.css') }}" type="text/css"
+              rel="stylesheet"/>
+        <link href="{{ asset('bundles/blokkr/vendor/bootstrap/dist/css/bootstrap-theme.min.css.map') }}" type="text/css" rel="stylesheet"/>
+        <link href="{{ asset('bundles/blokkr/css/main.css') }}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+</head>
+<body>
+
+<section class="container-fluid">
+    {% include '::navigation.html.twig' %}
+
+    <div id="main_wrapper" class="row">
+        <section class="col-md-12" title="Main content">
+            {% block body %}{% endblock %}
+        </section>
+    </div>
+</section>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
