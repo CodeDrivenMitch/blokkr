@@ -1,8 +1,18 @@
 services:
-#    blokkr.example:
-#        class: BlokkrBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+
+  # Registration formType extension
   app.form.registration:
       class: BlokkrBundle\Form\Authentication\UserRegisterType
       tags:
          - { name: form.type, alias: app_user_register }
+
+  blokkr.service.profile:
+      class: BlokkrBundle\Services\ProfileService
+      arguments:
+        entityRepository: "@blokkr.repository.user"
+
+  blokkr.repository.user:
+      class: Doctrine\ORM\EntityRepository
+      factory: ["@doctrine.orm.default_entity_manager", getRepository]
+      arguments:
+        - BlokkrBundle\Entity\Authentication\BlokkrUser

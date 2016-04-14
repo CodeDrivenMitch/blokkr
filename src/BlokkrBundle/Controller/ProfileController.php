@@ -19,9 +19,17 @@ class ProfileController extends Controller
      *     "userId": "\d+"
      * })
      * @Method({"GET","HEAD"})
+     * @param $userId
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction()
+    public function showAction($userId)
     {
+        $profileService = $this->get("blokkr.service.profile");
+        $profile = $profileService->getProfile($userId);
+        if(!$profile) {
+            throw $this->createNotFoundException("This profile does not exist!");
+        }
 
+        return $this->render('BlokkrBundle:Profile:show.html.twig');
     }
 }
