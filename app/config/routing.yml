@@ -7,6 +7,7 @@ fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: "register"
 
 #blogger_blog:
 #    resource: "@BloggerBlogBundle/Resources/config/routing.yml"
