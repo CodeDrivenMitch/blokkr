@@ -78,3 +78,9 @@ fos_user:
     registration:
       form:
         type: BlokkrBundle\Form\Authentication\UserRegisterType
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: BlokkrBundle\Migrations
+    table_name: migration_versions
+    name: Blokkr Migrations
