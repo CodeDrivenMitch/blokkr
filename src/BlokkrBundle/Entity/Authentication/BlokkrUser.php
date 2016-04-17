@@ -2,6 +2,7 @@
 
 namespace BlokkrBundle\Entity\Authentication;
 
+use BlokkrBundle\Entity\Profile;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,31 +26,31 @@ class BlokkrUser extends BaseUser
     }
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\OneToOne(targetEntity="BlokkrBundle\Entity\Profile", mappedBy="user")
      */
-    protected $name;
+    private $profile;
 
     /**
-     * Set name
+     * Set profile
      *
-     * @param string $name
+     * @param Profile $profile
      *
      * @return BlokkrUser
      */
-    public function setName($name)
+    public function setProfile(Profile $profile = null)
     {
-        $this->name = $name;
+        $this->profile = $profile;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get profile
      *
-     * @return string
+     * @return Profile
      */
-    public function getName()
+    public function getProfile()
     {
-        return $this->name;
+        return $this->profile;
     }
 }

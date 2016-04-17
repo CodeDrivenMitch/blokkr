@@ -1,5 +1,9 @@
-{%  extends '::base.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block content %}
-
+{% block body  %}
+    {% if profile is null  %}
+        This profile could not be found!
+    {% else %}
+        Profile found
+    {% endif %}
 {% endblock %}
