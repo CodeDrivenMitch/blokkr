@@ -3,6 +3,7 @@
 namespace BlokkrBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -13,7 +14,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields="shortcut",
  *     ignoreNull="true",
  *     message="This shortcut is already in use!",
- *     repositoryMethod="findByShortcut")
+ *     repositoryMethod="findByShortcut",
+ *     groups={"create"})
  */
 class Profile
 {
@@ -29,6 +31,7 @@ class Profile
     /**
      * @ORM\OneToOne(targetEntity="BlokkrBundle\Entity\Authentication\BlokkrUser", inversedBy="profile")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Assert\NotNull
      */
     private $user;
 
@@ -36,20 +39,27 @@ class Profile
      * @var string
      *
      * @ORM\Column(name="shortcut", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Regex(pattern="/^[a-z_0-9]*$/", message="Only numbers, lower-case letters and underscores are allowed here!")
+     * @Assert\Length(min="5")
      */
     private $shortcut;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="text")
+     * @ORM\Column(name="name", type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(min="5")
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bio", type="string", length=255)
+     * @ORM\Column(name="bio", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min="10")
      */
     private $bio;
 

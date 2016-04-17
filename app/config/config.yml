@@ -38,7 +38,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form_themes: ['bootstrap_3_layout.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -80,3 +79,6 @@ doctrine_migrations:
     namespace: BlokkrBundle\Migrations
     table_name: migration_versions
     name: Blokkr Migrations
+
+mopa_bootstrap:
+    form: ~  # Adds twig form theme  support
