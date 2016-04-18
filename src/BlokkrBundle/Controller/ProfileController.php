@@ -35,7 +35,7 @@ class ProfileController extends Controller
             $profile = $currentUser->getProfile();
             // If own profile can not be found, redirect to creation page
             if ($profile === null) {
-                return $this->redirectToRoute("blokkr_profile_edit", array("slug" => "self"));
+                return $this->redirectToRoute("blokkr_profile_new");
             }
         } else {
             $profile = $profileService->getProfileBySlug($slug);
@@ -51,6 +51,7 @@ class ProfileController extends Controller
             'self' => $currentUser->getProfile() !== null && $currentUser->getProfile() === $profile
         ));
     }
+
 
 
     /**
@@ -86,7 +87,7 @@ class ProfileController extends Controller
 
 
     /**
-     * @Route("/profile/edit/{slug}", name="blokkr_profile_edit", defaults={"slug": "self"})
+     * @Route("/profile/edit/{slug}", name="blokkr_profile_edit")
      * @Method({"GET","HEAD", "POST"})
      * @param Request $request
      * @param $slug

@@ -1,9 +1,9 @@
-{% extends '::base.html.twig' %}
+{% extends '@Blokkr/layout.html.twig' %}
 
 {% block body  %}
     {% if profile is null  %}
         This profile could not be found!
     {% else %}
-        Profile found
+        {{ dump(profile) }}
     {% endif %}
 {% endblock %}
