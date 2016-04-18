@@ -28,6 +28,9 @@ class ProfileController extends Controller
      */
     public function showProfileAction($slug)
     {
+        if($slug === "new") {
+            return $this->redirectToRoute("blokkr_profile_new");
+        }
         $currentUser = $this->get("security.token_storage")->getToken()->getUser();
         $profileService = $this->get("blokkr.service.profile");
 
